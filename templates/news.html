@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Section</title>
+  
+    <style>
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .news-article {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        .news-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .news-description {
+            font-size: 16px;
+        }
+
+        .news-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 50px;
+        }
+      
+    </style>
+</head>
+<body>
+    {% include 'header.html' %}
+    <h1 class="header">Latest Business News</h1>
+
+    <div class="news-container">
+        {% for article in news %}
+            <div class="news-article">
+                <h2 class="news-title">{{ article.title }}</h2>
+                <p class="news-description">{{ article.description }}</p>
+                {% if article.urlToImage %}
+                    <img src="{{ article.urlToImage }}" alt="News Image" class="news-image">
+                {% endif %}
+                <p><a href="{{ article.url }}" target="_blank">Read more</a></p>
+            </div>
+        {% endfor %}
+      {% include 'footer.html' %}
+    </div>
+</body>
+</html>
